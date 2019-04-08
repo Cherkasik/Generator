@@ -46,7 +46,7 @@ button.style.marginTop = "40px";
 var xhr = new XMLHttpRequest();
 var text;
 var body = 'method=getQuote&format=text&lang=ru';
-xhr.open("POST", 'http://api.forismatic.com/api/1.0/?' + body, true);
+xhr.open("POST", 'https://api.forismatic.com/api/1.0/?' + body, true);
 xhr.send(text);
 console.log(text);
 
