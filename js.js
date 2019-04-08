@@ -44,14 +44,12 @@ button.style.display = "block";
 button.style.marginTop = "40px";
 
 var xhr = new XMLHttpRequest();
-var text;
-var body = 'method=getQuote&format=text&lang=ru';
-xhr.open("POST", 'https://api.forismatic.com/api/1.0/?' + body, true);
-xhr.send(text);
-console.log(text);
-
+xhr.open("GET", 'cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=xml&lang=ru', true);
+xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+xhr.setRequestHeader("Content-type", "text/xml");
+xhr.send(); 
 
 window.onload = function(){ctx.font = "bold 20pt Comic Sans MS";
 ctx.fillStyle = "white";
 ctx.textAlign = "center";
-ctx.fillText(text, 200, 200);};
+ctx.fillText("Hello World", 200, 200);};
