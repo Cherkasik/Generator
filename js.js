@@ -44,12 +44,21 @@ button.style.display = "block";
 button.style.marginTop = "40px";
 
 var xhr = new XMLHttpRequest();
-xhr.open("GET", 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=xml&lang=ru', true);
-xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-xhr.setRequestHeader("Content-type", "text/xml");
-xhr.send(); 
+xhr.open("GET", 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=text&lang=ru', true);
+xhr.onload = function(){
+    var text = xhr.responseText;
+    console.log(text);
+    window.onload = function(){ctx.font = "bold 20pt Comic Sans MS";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText(text, 200, 200);};
+}
+xhr.send(null);
 
-window.onload = function(){ctx.font = "bold 20pt Comic Sans MS";
+
+
+
+/*window.onload = function(){ctx.font = "bold 20pt Comic Sans MS";
 ctx.fillStyle = "white";
 ctx.textAlign = "center";
-ctx.fillText("Hello World", 200, 200);};
+ctx.fillText("Hello World", 200, 200);};*/
