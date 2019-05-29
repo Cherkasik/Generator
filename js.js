@@ -5,6 +5,7 @@ canvas.height = 400;
 canvas.style.border = "1px solid black";
 canvas.style.margin = "auto";
 canvas.style.display = "block";
+canvas.style.boxShadow = "0 0 20px black"
 document.body.appendChild(canvas);
 var elem = document.getElementById("collage");
 var ctx = canvas.getContext("2d");
@@ -35,7 +36,7 @@ ref.id = "down-btn";
 ref.href = "#";
 ref.textContent = "Download collage";
 ref.download = "collage.png";
-ref.addEventListener('click', function(e){
+ref.addEventListener('click', function(){
     var dataURL = canvas.toDataURL();
     ref.href = dataURL;
 })
@@ -52,14 +53,20 @@ xhr.onload = function(){
     window.onload = function(){
     ctx.font = "bold 16pt Comic Sans MS";
     ctx.fillStyle = "white";
+    ctx.shadowColor = "black"
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 3;
+    ctx.shadowBlur = 4;
     var marginLeft = 20;
-    var marginTop = 170;
+    if (countWords < 15g){var marginTop = 190}
+    else if (countWords < 20){var marginTop = 170}
+    else {var marginTop = 150}
     var lineHeight = 25;
     var line = "";
     for (var n = 0; n < countWords; n++) {
         var testLine = line + words[n] + " ";
         var testWidth = ctx.measureText(testLine).width;
-        if (testWidth > 390) {
+        if (testWidth > 380) {
             ctx.fillText(line, marginLeft, marginTop);
             line = words[n] + " ";
             marginTop += lineHeight;
