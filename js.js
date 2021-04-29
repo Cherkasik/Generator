@@ -1,3 +1,20 @@
+const writeComment = () => {
+    let paragraph = document.createElement('p');
+    paragraph.style.cssText = `
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-weight: 700;
+    `;
+    paragraph.innerHTML = `
+        Because of high load of cors-anywhere
+        it's needed to press button "Request temporary access"
+        &nbsp;
+        <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a>
+    `;
+    document.body.appendChild(paragraph);
+};
+
 const createCanvas = () => {
     let canv = document.createElement('canvas');
     canv.id = "collage";
@@ -42,7 +59,7 @@ const createDownloadButton = (canvas) => {
 
 const writeText = (ctx) => {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=text&lang=ru', true);
+    xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=text&lang=ru', true);
     xhr.onload = () => {
         const words = xhr.responseText.split(" ");
         const countWords = words.length;
@@ -72,6 +89,7 @@ const writeText = (ctx) => {
             ctx.fillText(line, marginLeft, marginTop);
         };
     }
+    xhr.onerror = () => writeComment();
     xhr.send(null);
 };
 
