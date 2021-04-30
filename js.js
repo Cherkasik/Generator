@@ -61,6 +61,7 @@ const writeText = (ctx) => {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=text&lang=ru', true);
     xhr.onload = () => {
+        if (xhr.responseText === 'See /corsdemo for more info\n') writeComment();
         const words = xhr.responseText.split(" ");
         const countWords = words.length;
         window.onload = () => {
@@ -89,7 +90,6 @@ const writeText = (ctx) => {
             ctx.fillText(line, marginLeft, marginTop);
         };
     }
-    xhr.onerror = () => writeComment();
     xhr.send(null);
 };
 
